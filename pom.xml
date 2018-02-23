@@ -26,6 +26,7 @@
         <jackson.version>2.9.4</jackson.version>
         <spring.version>4.3.14.RELEASE</spring.version>
         <!-- Dependency -->
+        <jsr305.version>3.0.2</jsr305.version>
 
     </properties>
     <dependencyManagement>
@@ -57,7 +58,12 @@
                 <artifactId>logback-core</artifactId>
                 <version>${logback.version}</version>
             </dependency>
-
+            <!-- http://mvnrepository.com/artifact/com.google.code.findbugs/jsr305/ -->
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>${jsr305.version}</version>
+            </dependency>
             <!-- Exclusive -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -75,6 +81,10 @@
                     <exclusion>
                         <groupId>com.fasterxml.jackson.core</groupId>
                         <artifactId>jackson-databind</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-tomcat</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -567,6 +577,10 @@
                     <artifactId>spring-core</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
     </dependencies>
 </project>
