@@ -9,10 +9,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>spring-co</module>
-        <module>spring-instance</module>
+        <module>spring-import</module>
     </modules>
     <packaging>pom</packaging>
-    <name>( Spring Up ) Framework </name>
+    <name>( Spring Up ) Up Framework </name>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -20,9 +20,20 @@
     </parent>
     <properties>
         <eureka.version>1.7.0</eureka.version>
+        <guava.version>18.0</guava.version>
+        <slf4j.version>1.7.12</slf4j.version>
+        <jackson.version>2.8.10</jackson.version>
+        <spring.version>4.3.13.RELEASE</spring.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Edgware.SR2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <!-- You actually can't use Eureka as a client unless you register so
                     it has to be a webapp -->
@@ -35,13 +46,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Edgware.SR2</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+
 
             <dependency>
                 <groupId>org.antlr</groupId>
@@ -86,6 +91,10 @@
                 <artifactId>eureka-client</artifactId>
                 <version>${eureka.version}</version>
                 <exclusions>
+                    <exclusion>
+                        <groupId>com.netflix.archaius</groupId>
+                        <artifactId>archaius-core</artifactId>
+                    </exclusion>
                     <exclusion>
                         <groupId>com.netflix.servo</groupId>
                         <artifactId>servo-core</artifactId>
@@ -152,6 +161,10 @@
                         <groupId>com.netflix.eureka</groupId>
                         <artifactId>eureka-client</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>com.netflix.archaius</groupId>
+                        <artifactId>archaius-core</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
@@ -161,6 +174,10 @@
                     <exclusion>
                         <groupId>com.netflix.ribbon</groupId>
                         <artifactId>ribbon-loadbalancer</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.netflix.archaius</groupId>
+                        <artifactId>archaius-core</artifactId>
                     </exclusion>
                     <exclusion>
                         <groupId>com.netflix.servo</groupId>
@@ -194,12 +211,38 @@
                         <groupId>com.netflix.ribbon</groupId>
                         <artifactId>ribbon-loadbalancer</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>io.reactivex</groupId>
+                        <artifactId>rxnetty</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.netflix.archaius</groupId>
+                        <artifactId>archaius-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.netflix.hystrix</groupId>
+                <artifactId>hystrix-core</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.netflix.archaius</groupId>
+                        <artifactId>archaius-core</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.netflix.ribbon</groupId>
                 <artifactId>ribbon</artifactId>
                 <exclusions>
+                    <exclusion>
+                        <groupId>io.reactivex</groupId>
+                        <artifactId>rxjava</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-configuration</groupId>
+                        <artifactId>commons-configuration</artifactId>
+                    </exclusion>
                     <exclusion>
                         <groupId>javax.inject</groupId>
                         <artifactId>javax.inject</artifactId>
@@ -256,6 +299,10 @@
                         <groupId>com.netflix.ribbon</groupId>
                         <artifactId>ribbon-core</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>io.reactivex</groupId>
+                        <artifactId>rxjava</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
@@ -269,12 +316,76 @@
                 </exclusions>
             </dependency>
             <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-context</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>commons-configuration</groupId>
+                <artifactId>commons-configuration</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-lang</groupId>
+                        <artifactId>commons-lang</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework</groupId>
                         <artifactId>spring-web</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-aop</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-context</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-expression</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-aop</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -342,6 +453,26 @@
     </dependencyManagement>
     <dependencies>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
             <exclusions>
@@ -353,6 +484,22 @@
                     <groupId>com.fasterxml.jackson.core</groupId>
                     <artifactId>jackson-annotations</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -360,8 +507,32 @@
             <artifactId>spring-cloud-starter-eureka</artifactId>
             <exclusions>
                 <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+                <exclusion>
                     <groupId>org.springframework.cloud</groupId>
                     <artifactId>spring-cloud-starter</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
