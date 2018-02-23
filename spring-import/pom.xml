@@ -14,4 +14,9 @@
     <modules>
         <module>spring-instance</module>
     </modules>
+    <dependencyManagement>
+        <dependencies>
+
+        </dependencies>
+    </dependencyManagement>
 </project>
