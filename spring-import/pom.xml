@@ -13,10 +13,16 @@
     <name>( Spring Up ) Up Importer Inherit</name>
     <modules>
         <module>spring-instance</module>
+        <module>spring-eureka</module>
     </modules>
-    <dependencyManagement>
-        <dependencies>
-
-        </dependencies>
-    </dependencyManagement>
+    <properties>
+        <spring.co.version>1.0-SNAPSHOT</spring.co.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>io.vertxcn</groupId>
+            <artifactId>spring-co</artifactId>
+            <version>${spring.co.version}</version>
+        </dependency>
+    </dependencies>
 </project>
