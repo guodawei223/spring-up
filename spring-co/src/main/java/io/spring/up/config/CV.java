@@ -1,6 +1,6 @@
 package io.spring.up.config;
 
-import io.spring.up.atom.JsonObject;
+import io.spring.up.core.data.JsonObject;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;

@@ -1,6 +1,6 @@
 package io.spring.up.config;
 
-import io.spring.up.atom.JsonObject;
+import io.spring.up.core.data.JsonObject;
 import io.spring.up.tool.fn.Fn;
 import io.spring.up.tool.io.Ut;
 

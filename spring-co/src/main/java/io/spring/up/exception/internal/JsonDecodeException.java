@@ -16,7 +16,7 @@
 
 package io.spring.up.exception.internal;
 
-public class JsonDecodeException extends AbstractInternalException {
+public class JsonDecodeException extends InternalException {
 
     public JsonDecodeException(final String message) {
         super(message, -10002);

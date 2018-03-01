@@ -1,7 +1,7 @@
 package io.spring.up.tool.io;
 
-import io.spring.up.atom.JsonArray;
-import io.spring.up.atom.JsonObject;
+import io.spring.up.core.data.JsonArray;
+import io.spring.up.core.data.JsonObject;
 
 import java.io.File;
 import java.io.InputStream;

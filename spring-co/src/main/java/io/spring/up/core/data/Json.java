@@ -14,7 +14,7 @@
  * You may elect to redistribute this code under either of these licenses.
  */
 
-package io.spring.up.atom;
+package io.spring.up.core.data;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;

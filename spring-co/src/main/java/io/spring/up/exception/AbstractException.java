@@ -1,6 +1,12 @@
 package io.spring.up.exception;
 
+import io.spring.up.core.data.JsonObject;
+
 public abstract class AbstractException extends RuntimeException {
+
+    protected static final String MESSAGE = "message";
+    protected static final String CODE = "code";
+
     public AbstractException(final String message) {
         super(message);
     }
@@ -13,5 +19,12 @@ public abstract class AbstractException extends RuntimeException {
         super(cause);
     }
 
-    public abstract int getCode();
+    protected abstract int getCode();
+
+    public JsonObject toJson() {
+        final JsonObject data = new JsonObject();
+        data.put(CODE, this.getCode());
+        data.put(MESSAGE, this.getMessage());
+        return data;
+    }
 }

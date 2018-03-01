@@ -2,7 +2,7 @@ package io.spring.up.exception.internal;
 
 import java.text.MessageFormat;
 
-public class EmptyStreamException extends AbstractInternalException {
+public class EmptyStreamException extends InternalException {
 
     public EmptyStreamException(final String message) {
         super(MessageFormat.format(Message.EMPTY_STREAM, message), -10003);
