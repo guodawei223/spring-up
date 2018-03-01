@@ -1,5 +1,6 @@
 package io.spring.up.log;
 
+import io.spring.up.exception.AbstractException;
 import io.spring.up.tool.fn.Evaluater;
 import io.spring.up.tool.fn.Fn;
 import org.slf4j.Logger;
@@ -17,12 +18,20 @@ public class Log {
         output(logger::isDebugEnabled, logger::debug, message, args);
     }
 
+    public static void error(final Logger logger, final AbstractException ex) {
+        error(logger, ex.getMessage());
+    }
+
     public static void error(final Logger logger, final String message, final String... args) {
         output(logger::isErrorEnabled, logger::error, message, args);
     }
 
     public static void warn(final Logger logger, final String message, final String... args) {
-        output(logger::isWarnEnabled, logger::info, message, args);
+        output(logger::isWarnEnabled, logger::warn, message, args);
+    }
+
+    public static void warn(final Logger logger, final AbstractException ex) {
+        warn(logger, ex.getMessage());
     }
 
     public static void info(final Logger logger, final String message, final String... args) {

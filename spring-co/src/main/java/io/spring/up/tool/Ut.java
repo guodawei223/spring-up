@@ -143,6 +143,20 @@ public class Ut {
         return Types.isDate(value);
     }
 
+    // 读取数据
+    public static Object readJson(final JsonObject data, final String key) {
+        return Jackson.readJson(null, data, key);
+    }
+
+    public static Object readJson(final Object value, final JsonObject data, final String key) {
+        return Jackson.readJson(value, data, key);
+    }
+
+    public static String readJson(final String value, final JsonObject data, final String key) {
+        final Object result = Jackson.readJson(value, data, key);
+        return null == result ? value : result.toString();
+    }
+
     // 类型转换
     public static <T extends Enum<T>> T toEnum(final Class<T> clazz, final String input) {
         return To.toEnum(clazz, input);

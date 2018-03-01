@@ -95,4 +95,11 @@ class Jackson {
         return Fn.getJvm(null,
                 () -> Fn.getJvm(() -> Jackson.MAPPER.readValue(value, type)), value);
     }
+
+    static Object readJson(final Object value, final JsonObject data, final String key) {
+        return Fn.getNull(value, () -> {
+            final Object result = data.getValue(key);
+            return Fn.getNull(value, () -> result, result);
+        }, data, key);
+    }
 }

@@ -4,19 +4,21 @@ import cn.hutool.core.io.FileUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+import com.fasterxml.jackson.dataformat.yaml.snakeyaml.error.MarkedYAMLException;
 import io.spring.up.core.data.JsonArray;
 import io.spring.up.core.data.JsonObject;
 import io.spring.up.cv.Constants;
 import io.spring.up.cv.Encodings;
 import io.spring.up.cv.Strings;
 import io.spring.up.exception.internal.EmptyStreamException;
+import io.spring.up.exception.internal.YamlFormatException;
+import io.spring.up.log.Log;
 import io.spring.up.tool.fn.Fn;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,7 @@ import java.util.Properties;
 @SuppressWarnings("all")
 class IO {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(IO.class);
     private static final ObjectMapper YAML = new YAMLMapper();
 
     static JsonArray getJArray(final String filename) {
@@ -95,20 +98,34 @@ class IO {
 
     static <T> T getJYaml(final String filename) {
         final boolean isArray = isJArray(filename);
-        return isArray ? (T) new JsonArray(getYamlNode(filename).toString()) :
-                (T) new JsonObject(getYamlNode(filename).toString());
+        T ret = null;
+        if (isArray) {
+            final JsonNode node = getYamlNode(filename);
+            ret = (T) (null == node ? new JsonArray() : new JsonArray(node.toString()));
+        } else {
+            final JsonNode node = getYamlNode(filename);
+            ret = (T) (null == node ? new JsonObject() : new JsonObject(node.toString()));
+        }
+        return ret;
     }
 
     private static JsonNode getYamlNode(final String filename) {
         final InputStream in = getStream(filename);
         if (null == in) {
             // 双重检查，上层要转换
-            throw new EmptyStreamException(filename);
+            Log.warn(LOGGER, new EmptyStreamException(filename));
         }
-        final JsonNode node = Fn.getJvm(() -> YAML.readTree(in));
-        if (null == node) {
-            // 双重检查，上层要转换
-            throw new EmptyStreamException(filename);
+        JsonNode node = null;
+        try {
+            node = YAML.readTree(in);
+            if (null == node) {
+                // 双重检查，上层要转换
+                Log.warn(LOGGER, new EmptyStreamException(filename));
+            }
+        } catch (MarkedYAMLException ex) {
+            throw new YamlFormatException(filename);
+        } catch (IOException ex) {
+            Log.jvm(LOGGER, ex);
         }
         return node;
     }
