@@ -152,6 +152,11 @@ public class Ut {
         return Jackson.readJson(value, data, key);
     }
 
+    public static JsonObject readJson(final JsonObject value, final JsonObject data, final String key) {
+        final Object result = Jackson.readJson(value, data, key);
+        return null == result ? new JsonObject() : (JsonObject) result;
+    }
+
     public static String readJson(final String value, final JsonObject data, final String key) {
         final Object result = Jackson.readJson(value, data, key);
         return null == result ? value : result.toString();

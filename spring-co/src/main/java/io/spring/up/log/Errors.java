@@ -3,6 +3,7 @@ package io.spring.up.log;
 import io.spring.up.config.Node;
 import io.spring.up.core.data.JsonObject;
 import io.spring.up.exception.internal.ErrorMissingException;
+import io.spring.up.tool.Ut;
 import io.spring.up.tool.fn.Fn;
 
 import java.text.MessageFormat;
@@ -27,12 +28,15 @@ public class Errors {
                                     final Object... args) {
         return Fn.getJvm(() -> {
             final String key = ("E" + Math.abs(code)).intern();
-            final JsonObject errors = Node.infix("error");
-            if (null != errors && errors.containsKey(key)) {
+            JsonObject errors = Node.infix("error");
+            if (null == errors) {
+                throw new ErrorMissingException(code);
+            }
+            errors = Ut.readJson(new JsonObject(), errors, "error");
+            if (errors.containsKey(key)) {
                 final String pattern = errors.getString(key);
                 final String error = MessageFormat.format(pattern, args);
-                return MessageFormat.format(tpl, String.valueOf(code),
-                        clazz.getSimpleName(), error);
+                return MessageFormat.format(tpl, String.valueOf(code), error);
             } else {
                 throw new ErrorMissingException(code);
             }
