@@ -1,13 +1,13 @@
 package com.kingxunlian.micro.up;
 
-import io.spring.up.annotations.EndPoint;
-import io.spring.up.annotations.Post;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@EndPoint
+@RestController
 public class HelloApi {
 
-    @Post("/hello")
+    @GetMapping("/hello")
     public String sayHello(
             @RequestBody final String name
     ) {
