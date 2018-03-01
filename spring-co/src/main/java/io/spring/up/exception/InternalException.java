@@ -1,6 +1,4 @@
-package io.spring.up.exception.internal;
-
-import io.spring.up.exception.AbstractException;
+package io.spring.up.exception;
 
 import java.text.MessageFormat;
 

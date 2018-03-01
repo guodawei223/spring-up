@@ -16,6 +16,8 @@
 
 package io.spring.up.exception.internal;
 
+import io.spring.up.exception.InternalException;
+
 public class JsonEncodeException extends InternalException {
 
     public JsonEncodeException(final String message) {

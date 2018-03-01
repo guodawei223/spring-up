@@ -1,4 +1,4 @@
-package io.spring.up.tool.io;
+package io.spring.up.tool;
 
 import com.esotericsoftware.reflectasm.ConstructorAccess;
 import io.spring.up.tool.fn.Fn;

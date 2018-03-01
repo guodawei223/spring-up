@@ -1,5 +1,7 @@
 package io.spring.up.exception.internal;
 
+import io.spring.up.exception.InternalException;
+
 import java.text.MessageFormat;
 
 public class EmptyStreamException extends InternalException {

@@ -10,12 +10,12 @@ import java.util.Objects;
 public abstract class WebException extends AbstractException {
 
     protected static final String INFO = "info";
-    
+
     private final String message;
 
     protected HttpStatus status;
 
-    private String readible;
+    private String info;
 
     public WebException(final String message) {
         super(message);
@@ -42,16 +42,16 @@ public abstract class WebException extends AbstractException {
         return this.status;
     }
 
-    public void setReadible(final String readible) {
-        this.readible = readible;
-    }
-
     public void setStatus(final HttpStatus status) {
         this.status = status;
     }
 
-    public String getReadible() {
-        return this.readible;
+    public String getInfo() {
+        return this.info;
+    }
+
+    public void setInfo(final String info) {
+        this.info = info;
     }
 
     @Override
@@ -59,8 +59,8 @@ public abstract class WebException extends AbstractException {
         final JsonObject data = new JsonObject();
         data.put(CODE, this.getCode());
         data.put(MESSAGE, this.getMessage());
-        if (Objects.nonNull(this.readible)) {
-            data.put(INFO, this.readible);
+        if (Objects.nonNull(this.info)) {
+            data.put(INFO, this.info);
         }
         return data;
     }

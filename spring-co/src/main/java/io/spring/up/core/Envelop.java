@@ -8,4 +8,6 @@ public class Envelop {
     private WebException error;
 
     private JsonObject data;
+
+    private JsonObject metadata;
 }

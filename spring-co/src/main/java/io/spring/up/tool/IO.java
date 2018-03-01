@@ -1,4 +1,4 @@
-package io.spring.up.tool.io;
+package io.spring.up.tool;
 
 import cn.hutool.core.io.FileUtil;
 import com.fasterxml.jackson.databind.JsonNode;
