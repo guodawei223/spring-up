@@ -31,6 +31,9 @@
         <jsr305.version>3.0.2</jsr305.version>
         <hutool.version>4.0.5</hutool.version>
         <reflect.asm.version>1.11.3</reflect.asm.version>
+        <junit.version>4.12</junit.version>
+        <!-- Plugin -->
+        <maven.plugin.version>2.5</maven.plugin.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -43,6 +46,12 @@
                 <groupId>com.esotericsoftware</groupId>
                 <artifactId>reflectasm</artifactId>
                 <version>${reflect.asm.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/junit/junit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
             </dependency>
             <!-- http://mvnrepository.com/artifact/com.fasterxml.jackson.core -->
             <dependency>
@@ -106,7 +115,6 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
 
             <dependency>
                 <groupId>org.antlr</groupId>
@@ -605,4 +613,33 @@
             <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
     </dependencies>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- http://www.mvnrepository.com/artifact/org.codehaus.mojo/versions-maven-plugin -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${maven.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!--
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>display-dependency-updates</goal>
+                            <goal>display-plugin-updates</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
+        </plugins>
+    </build>
 </project>
