@@ -46,4 +46,16 @@ class Numeric {
             return isMatch("^-[0]\\.[1-9]*|^-[1-9]\\d*\\.\\d*", original);
         }
     }
+
+    static boolean inRange(final Integer value, final Integer min, final Integer max) {
+        // min和max都为null
+        if (null == min && null == max) {
+            return true;
+        } else if (null != min && null != max) {
+            return min <= value && value <= max;
+        } else {
+            return ((null != min) && min <= value) ||
+                    ((null != max) && value <= max);
+        }
+    }
 }

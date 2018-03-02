@@ -13,6 +13,7 @@ interface Pool {
     ConcurrentMap<String, Rule> RULE_REF_MAP = new ConcurrentHashMap<String, Rule>() {
         {
             this.put("required", new RequiredRule());
+            this.put("length", new LengthRule());
         }
     };
 }

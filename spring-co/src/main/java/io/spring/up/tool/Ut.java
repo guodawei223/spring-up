@@ -162,6 +162,11 @@ public class Ut {
         return Types.isDate(value);
     }
 
+    // 值域处理
+    public static boolean inRange(final Integer value, final Integer min, final Integer max) {
+        return Numeric.inRange(value, min, max);
+    }
+
     // 读取数据
     public static Object readJson(final JsonObject data, final String key) {
         return Jackson.readJson(null, data, key);
@@ -179,6 +184,10 @@ public class Ut {
     public static String readJson(final String value, final JsonObject data, final String key) {
         final Object result = Jackson.readJson(value, data, key);
         return null == result ? value : result.toString();
+    }
+
+    public static Integer readInt(final Integer value, final JsonObject data, final String key) {
+        return Jackson.readInt(value, data, key);
     }
 
     // 类型转换
@@ -212,6 +221,10 @@ public class Ut {
 
     public static int toYear(final Date date) {
         return Period.toYear(date);
+    }
+
+    public static Integer toInteger(final Object value) {
+        return To.toInteger(value);
     }
 
     /**
