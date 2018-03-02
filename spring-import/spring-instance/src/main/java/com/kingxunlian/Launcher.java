@@ -7,10 +7,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @EnableAsync
-@ComponentScan(basePackages = {
-        "io.spring",
-        "com.kingxunlian"
-})
+@ComponentScan(basePackages = {"io.spring", "com.kingxunlian"})
 public class Launcher {
 
     public static void main(final String[] args) {

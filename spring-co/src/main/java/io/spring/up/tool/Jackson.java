@@ -53,6 +53,10 @@ class Jackson {
         Jackson.MAPPER.findAndRegisterModules();
     }
 
+    static ObjectMapper getMapper() {
+        return MAPPER;
+    }
+
 
     static <T, R extends Iterable> R serializeJson(final T t) {
         final String content = Jackson.serialize(t);

@@ -1,6 +1,7 @@
 package io.spring.up.tool;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.spring.up.core.data.JsonArray;
 import io.spring.up.core.data.JsonObject;
 
@@ -274,34 +275,37 @@ public class Ut {
     /**
      * Json序列化
      */
-    public <T, R extends Iterable> R serializeJson(final T t) {
+    public static <T, R extends Iterable> R serializeJson(final T t) {
         return Jackson.serializeJson(t);
     }
 
-    public <T> String serialize(final T t) {
+    public static <T> String serialize(final T t) {
         return Jackson.serialize(t);
     }
 
-    public <T> T deserialize(final JsonObject value, final Class<T> type) {
+    public static <T> T deserialize(final JsonObject value, final Class<T> type) {
         return Jackson.deserialize(value, type);
     }
 
-    public <T> T deserialize(final JsonArray value, final Class<T> type) {
+    public static <T> T deserialize(final JsonArray value, final Class<T> type) {
         return Jackson.deserialize(value, type);
     }
 
-    public <T> List<T> deserialize(final JsonArray value, final TypeReference<List<T>> type) {
+    public static <T> List<T> deserialize(final JsonArray value, final TypeReference<List<T>> type) {
         return Jackson.deserialize(value, type);
     }
 
-    public <T> T deserialize(final String value, final Class<T> type) {
+    public static <T> T deserialize(final String value, final Class<T> type) {
         return Jackson.deserialize(value, type);
     }
 
-    public <T> T deserialize(final String value, final TypeReference<T> type) {
+    public static <T> T deserialize(final String value, final TypeReference<T> type) {
         return Jackson.deserialize(value, type);
     }
 
+    public static ObjectMapper getJacksonMapper() {
+        return Jackson.getMapper();
+    }
     /**
      * 网络
      */

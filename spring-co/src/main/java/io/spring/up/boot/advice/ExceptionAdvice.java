@@ -1,4 +1,4 @@
-package io.spring.up.aop;
+package io.spring.up.boot.advice;
 
 import io.spring.up.core.data.JsonObject;
 import io.spring.up.exception.WebException;
