@@ -2,4 +2,4 @@ error:
   E20001: "[500] Request stream met io exception: {0}"
   E20002: "[500] Request body format is invalid, could not be convert to {0}"
   E20003: "[400] Request body is required, but now it's missing. name = {0}, method = {1}"
-  E20004: "[400] Validation failure occurs, field = {0}, value = {1}, rule = {2}"
+  E20004: "[400] Validation failure occurs, field = {0}, value = {1}, rule = {2}, config = {3}"

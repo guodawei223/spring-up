@@ -8,6 +8,6 @@ public class RequiredRule implements Rule {
     public WebException verify(final String field,
                                final Object value,
                                final JsonObject config) {
-        return Rule.verify(this.getClass(), () -> null == value, field, value, "required");
+        return Rule.verify(this.getClass(), () -> null == value, field, value, "required", config);
     }
 }

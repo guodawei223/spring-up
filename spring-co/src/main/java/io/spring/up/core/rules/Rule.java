@@ -33,10 +33,10 @@ public interface Rule {
     static WebException verify(final Class<?> clazz,
                                final Supplier<Boolean> errorSupplier,
                                final String field, final Object value,
-                               final String rule) {
+                               final String rule, final JsonObject config) {
         WebException error = null;
         if (errorSupplier.get()) {
-            error = new _400ValidationException(clazz, field, value, rule);
+            error = new _400ValidationException(clazz, field, value, rule, config);
         }
         return error;
     }

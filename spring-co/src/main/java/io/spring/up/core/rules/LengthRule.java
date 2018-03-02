@@ -17,6 +17,6 @@ public class LengthRule implements Rule {
             final Integer numberVal = value.toString().length();
             // 不在范围内，这里提供的是Error Condition
             return !Ut.inRange(numberVal, min, max);
-        }, field, value, "length"), config);
+        }, field, value, "length", config), config);
     }
 }
