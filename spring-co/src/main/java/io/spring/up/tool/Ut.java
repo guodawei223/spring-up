@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.function.BiConsumer;
 
 public class Ut {
     // IO专用方法
@@ -65,8 +66,26 @@ public class Ut {
         return Instance.singleton(clazz, args);
     }
 
+    public static <T> T invoke(final Object instance, final String methodName, final Object... args) {
+        return Instance.invokeObject(instance, methodName, args);
+    }
+
     public static Class<?> clazz(final String name) {
         return Instance.clazz(name);
+    }
+
+    // 集合遍历专用方法
+    public static void itJObject(final JsonObject object, final BiConsumer<String, Object> consumer) {
+        It.itJObject(object, consumer);
+    }
+
+    public static <T> void itJArray(final JsonArray array, final Class<T> clazz, final BiConsumer<T, Integer> consumer) {
+        It.itJArray(array, clazz, consumer);
+    }
+
+    // 快速方法（遍历元素为JsonObject的数组）
+    public static void itJArray(final JsonArray array, final BiConsumer<JsonObject, Integer> consumer) {
+        It.itJArray(array, JsonObject.class, consumer);
     }
 
     // 类型判断

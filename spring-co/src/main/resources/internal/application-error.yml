@@ -1,2 +1,4 @@
 error:
   E20001: "[500] Request stream met io exception: {0}"
+  E20002: "[500] Request body format is invalid, could not be convert to {0}"
+  E20003: "[400] Request body is required, but now it's missing. name = {0}, method = {1}"

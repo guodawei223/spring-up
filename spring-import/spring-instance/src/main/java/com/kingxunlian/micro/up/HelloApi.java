@@ -1,6 +1,6 @@
 package com.kingxunlian.micro.up;
 
-import io.spring.up.annotations.JsonParam;
+import io.spring.up.annotations.JsonBody;
 import io.spring.up.core.data.JsonObject;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +14,13 @@ import java.util.concurrent.Future;
 public class HelloApi {
 
     @PostMapping("/hello")
-    public Future<String> sayHello(@JsonParam("/test") final JsonObject data) {
+    public Future<String> sayHello(@JsonBody("api.hello.post") final JsonObject data) {
         System.out.println(Thread.currentThread().getId());
+        return AsyncResult.forValue(data.encode());
+    }
+
+    @PostMapping("/hello1")
+    public Future<String> sayHello1(@JsonBody(value = "major", folder = "api.hello.post1") final JsonObject data) {
         return AsyncResult.forValue(data.encode());
     }
 }

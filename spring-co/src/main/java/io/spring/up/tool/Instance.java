@@ -1,6 +1,7 @@
 package io.spring.up.tool;
 
 import com.esotericsoftware.reflectasm.ConstructorAccess;
+import com.esotericsoftware.reflectasm.MethodAccess;
 import io.spring.up.tool.fn.Fn;
 
 import java.lang.reflect.Constructor;
@@ -54,6 +55,28 @@ class Instance {
         return Fn.pool(CLASSES, name,
                 // Fix：不使用Class.forName，会引起线程同步安全问题和死锁
                 () -> Fn.getJvm(() -> Thread.currentThread().getContextClassLoader().loadClass(name), name));
+    }
+
+    /**
+     * 反射调用方法
+     *
+     * @param instance
+     * @param name
+     * @param args
+     * @param <T>
+     * @return
+     */
+    static <T> T invokeObject(
+            final Object instance,
+            final String name,
+            final Object... args
+    ) {
+        return Fn.getJvm(null, () -> {
+            final MethodAccess access = MethodAccess.get(instance.getClass());
+            // 直接调用
+            final Object result = access.invoke(instance, name, args);
+            return null == result ? null : (T) result;
+        }, instance, name);
     }
 
     /**
