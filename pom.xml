@@ -951,7 +951,7 @@
                     <version>${maven.plugin.staging}</version>
                     <extensions>true</extensions>
                     <configuration>
-                        <serverId>vertx-zero</serverId>
+                        <serverId>spring-up</serverId>
                         <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                         <autoReleaseAfterClose>true</autoReleaseAfterClose>
                     </configuration>
