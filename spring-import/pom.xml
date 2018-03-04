@@ -5,7 +5,7 @@
     <parent>
         <artifactId>spring-up</artifactId>
         <groupId>io.vertxcn</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spring-import</artifactId>
@@ -13,10 +13,9 @@
     <name>( Spring Up ) Up Importer Inherit</name>
     <modules>
         <module>spring-instance</module>
-        <module>spring-eureka</module>
     </modules>
     <properties>
-        <spring.co.version>1.0-SNAPSHOT</spring.co.version>
+        <spring.co.version>0.1</spring.co.version>
     </properties>
     <dependencies>
         <dependency>
