@@ -312,6 +312,7 @@
             <dependency>
                 <groupId>com.netflix.eureka</groupId>
                 <artifactId>eureka-core</artifactId>
+                <version>${eureka.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>javax.ws.rs</groupId>
