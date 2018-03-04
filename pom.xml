@@ -57,7 +57,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.9.RELEASE</version>
+        <version>1.5.10.RELEASE</version>
     </parent>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -68,9 +68,20 @@
         <slf4j.version>1.7.25</slf4j.version>
         <jackson.version>2.9.4</jackson.version>
         <spring.version>4.3.14.RELEASE</spring.version>
+        <hystrix.version>1.5.12</hystrix.version>
+        <netflix.infix.version>0.3.0</netflix.infix.version>
+        <ribbon.version>2.2.4</ribbon.version>
+        <jersey.client4.version>1.19.4</jersey.client4.version>
+        <commons.configuration.version>1.10</commons.configuration.version>
+        <string.template.version>4.0.2</string.template.version>
+        <tomcat.embed.websocket.version>9.0.5</tomcat.embed.websocket.version>
+        <spring.boot.version>1.5.10.RELEASE</spring.boot.version>
+        <spring.cloud.version>1.3.2.RELEASE</spring.cloud.version>
+        <spring.cloud.config.version>1.4.2.RELEASE</spring.cloud.config.version>
+        <spring.cloud.netflix.version>1.4.3.RELEASE</spring.cloud.netflix.version>
         <!-- Dependency -->
         <jsr305.version>3.0.2</jsr305.version>
-        <hutool.version>4.0.5</hutool.version>
+        <hutool.version>4.0.6</hutool.version>
         <reflect.asm.version>1.11.3</reflect.asm.version>
         <junit.version>4.12</junit.version>
         <asm.version>6.0</asm.version>
@@ -210,6 +221,7 @@
                     it has to be a webapp -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.fasterxml.jackson.core</groupId>
@@ -225,6 +237,7 @@
             <dependency>
                 <groupId>org.antlr</groupId>
                 <artifactId>stringtemplate</artifactId>
+                <version>${string.template.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>antlr</groupId>
@@ -235,6 +248,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-commons</artifactId>
+                <version>${spring.cloud.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.apache.httpcomponents</groupId>
@@ -249,6 +263,7 @@
             <dependency>
                 <groupId>com.sun.jersey.contribs</groupId>
                 <artifactId>jersey-apache-client4</artifactId>
+                <version>${jersey.client4.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.sun.jersey</groupId>
@@ -302,6 +317,7 @@
             <dependency>
                 <groupId>com.netflix.netflix-commons</groupId>
                 <artifactId>netflix-infix</artifactId>
+                <version>${netflix.infix.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>javax.ws.rs</groupId>
@@ -331,6 +347,7 @@
             <dependency>
                 <groupId>com.netflix.ribbon</groupId>
                 <artifactId>ribbon-eureka</artifactId>
+                <version>${ribbon.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.netflix.eureka</groupId>
@@ -345,6 +362,7 @@
             <dependency>
                 <groupId>com.netflix.ribbon</groupId>
                 <artifactId>ribbon-httpclient</artifactId>
+                <version>${ribbon.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.netflix.ribbon</groupId>
@@ -363,6 +381,7 @@
             <dependency>
                 <groupId>com.netflix.ribbon</groupId>
                 <artifactId>ribbon-loadbalancer</artifactId>
+                <version>${ribbon.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.netflix.netflix-commons</groupId>
@@ -381,6 +400,7 @@
             <dependency>
                 <groupId>com.netflix.ribbon</groupId>
                 <artifactId>ribbon-transport</artifactId>
+                <version>${ribbon.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.netflix.ribbon</groupId>
@@ -399,6 +419,7 @@
             <dependency>
                 <groupId>com.netflix.hystrix</groupId>
                 <artifactId>hystrix-core</artifactId>
+                <version>${hystrix.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.netflix.archaius</groupId>
@@ -409,6 +430,7 @@
             <dependency>
                 <groupId>com.netflix.ribbon</groupId>
                 <artifactId>ribbon</artifactId>
+                <version>${ribbon.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>io.reactivex</groupId>
@@ -431,6 +453,7 @@
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-websocket</artifactId>
+                <version>${tomcat.embed.websocket.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.apache.tomcat.embed</groupId>
@@ -441,6 +464,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-ribbon</artifactId>
+                <version>${spring.cloud.netflix.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework.cloud</groupId>
@@ -451,6 +475,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-netflix-eureka-client</artifactId>
+                <version>${spring.cloud.netflix.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework.cloud</groupId>
@@ -461,6 +486,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+                <version>${spring.cloud.netflix.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.netflix.ribbon</groupId>
@@ -483,6 +509,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>${spring.boot.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework.boot</groupId>
@@ -493,6 +520,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot</artifactId>
+                <version>${spring.boot.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework</groupId>
@@ -507,6 +535,7 @@
             <dependency>
                 <groupId>commons-configuration</groupId>
                 <artifactId>commons-configuration</artifactId>
+                <version>${commons.configuration.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>commons-lang</groupId>
@@ -517,6 +546,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework</groupId>
@@ -527,6 +557,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework</groupId>
@@ -553,6 +584,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework</groupId>
@@ -567,6 +599,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-netflix-core</artifactId>
+                <version>${spring.cloud.netflix.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework.boot</groupId>
@@ -581,6 +614,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+                <version>${spring.cloud.netflix.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework.cloud</groupId>
@@ -591,6 +625,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-config-client</artifactId>
+                <version>${spring.cloud.config.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.fasterxml.jackson.core</groupId>
@@ -617,6 +652,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter</artifactId>
+                <version>${spring.cloud.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework.boot</groupId>
