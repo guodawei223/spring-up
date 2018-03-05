@@ -11,9 +11,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.util.List;
 
 @Configuration
-public class RuleConfig extends WebMvcConfigurerAdapter {
+public class ArgumentConfig extends WebMvcConfigurerAdapter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RuleConfig.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ArgumentConfig.class);
 
     @Override
     public void addArgumentResolvers(
