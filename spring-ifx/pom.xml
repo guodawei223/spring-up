@@ -8,20 +8,16 @@
         <version>0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>spring-import</artifactId>
+    <artifactId>spring-ifx</artifactId>
     <packaging>pom</packaging>
-    <name>( Spring Up ) Up Importer Inherit</name>
+    <name>( Spring Up ) Up Plugin for Chinese</name>
     <modules>
-        <module>spring-instance</module>
+        <module>spring-sms</module>
     </modules>
-    <properties>
-        <spring.co.version>0.1</spring.co.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>cn.spring-up</groupId>
             <artifactId>spring-co</artifactId>
-            <version>${spring.co.version}</version>
         </dependency>
     </dependencies>
 </project>

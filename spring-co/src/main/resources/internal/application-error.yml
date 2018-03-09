@@ -4,3 +4,5 @@ error:
   E20003: "[400] Request body is required, but now it's missing. name = {0}, method = {1}"
   E20004: "[400] Validation failure occurs, field = {0}, value = {1}, rule = {2}, config = {3}"
   E20005: "[500] Could not write JSON: {0}"
+  # Plugin
+  E30001: "[500] ( Sms ) Plugin key \"{0}\" is missing, it''s required."

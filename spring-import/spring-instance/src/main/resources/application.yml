@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: error,eureka
+    active: error,eureka,sms
   application:
     name: rs-spring-instance
 

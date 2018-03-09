@@ -4,12 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.vertxcn</groupId>
+    <groupId>cn.spring-up</groupId>
     <artifactId>spring-up</artifactId>
     <version>0.1</version>
     <modules>
         <module>spring-co</module>
         <module>spring-import</module>
+        <module>spring-ifx</module>
     </modules>
     <packaging>pom</packaging>
     <name>( Spring Up ) Up Framework </name>
@@ -119,6 +120,22 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>cn.spring-up</groupId>
+                <artifactId>spring-co</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.spring-up</groupId>
+                <artifactId>spring-ifx</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.spring-up</groupId>
+                <artifactId>spring-sms</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- Tool -->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
@@ -509,6 +526,17 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>${spring.boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
                 <version>${spring.boot.version}</version>
                 <exclusions>
                     <exclusion>

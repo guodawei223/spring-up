@@ -1,0 +1,8 @@
+tpl:
+  sms:
+    name: "cqyxl@cqyxl"
+    secret: "5QY3Hhug"
+    cmHost: "211.147.239.62"
+    cmPort: 9080
+    wsHost: "211.147.239.62"
+    wsPort: 9070

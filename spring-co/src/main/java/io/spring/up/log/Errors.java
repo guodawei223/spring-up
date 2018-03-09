@@ -16,6 +16,12 @@ public class Errors {
         return normalize(clazz, code, Tpl.E_UP, args);
     }
 
+    public static String formatPlugin(final Class<?> clazz,
+                                      final int code,
+                                      final Object... args){
+        return normalize(clazz, code, Tpl.E_PLUGIN, args);
+    }
+
     public static String formatWeb(final Class<?> clazz,
                                    final int code,
                                    final Object... args) {
