@@ -9,11 +9,5 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spring-instance</artifactId>
-    <name>( Spring Up ) Example Scaffold </name>
-    <dependencies>
-        <dependency>
-            <groupId>cn.spring-up</groupId>
-            <artifactId>spring-sms</artifactId>
-        </dependency>
-    </dependencies>
+    <name>( Spring Up ) Example Scaffold</name>
 </project>

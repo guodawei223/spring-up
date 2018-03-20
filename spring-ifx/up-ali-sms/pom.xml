@@ -8,8 +8,6 @@
         <version>0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>spring-sms</artifactId>
-    <name>( Spring Infix ) Sms Service</name>
-
+    <artifactId>up-ali-sms</artifactId>
+    <name>( Spring Infix ) Ali Sms Service</name>
 </project>

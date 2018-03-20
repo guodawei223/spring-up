@@ -10,9 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spring-ifx</artifactId>
     <packaging>pom</packaging>
-    <name>( Spring Up ) Up Plugin for Chinese</name>
+    <name>( Spring Infix ) Up Plugin for Chinese</name>
     <modules>
-        <module>spring-sms</module>
+        <module>up-ali-sms</module>
     </modules>
     <dependencies>
         <dependency>

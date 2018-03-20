@@ -25,12 +25,14 @@ public class CorsConfig {
         final JsonObject data = Node.infix("cors");
         final JsonObject config = data.getJsonObject("cors");
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        final CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin(Ut.readJson("*", config, "origin"));
-        corsConfiguration.addAllowedHeader(Ut.readJson("*", config, "header"));
-        corsConfiguration.addAllowedMethod(Ut.readJson("*", config, "method"));
-        source.registerCorsConfiguration(Ut.readJson("/**", config, "path"), corsConfiguration);
-        Log.info(LOGGER, "[ UP ] Cors configuration has been set : {0}", config.encode());
+        if (null != config) {
+            final CorsConfiguration corsConfiguration = new CorsConfiguration();
+            corsConfiguration.addAllowedOrigin(Ut.readJson("*", config, "origin"));
+            corsConfiguration.addAllowedHeader(Ut.readJson("*", config, "header"));
+            corsConfiguration.addAllowedMethod(Ut.readJson("*", config, "method"));
+            source.registerCorsConfiguration(Ut.readJson("/**", config, "path"), corsConfiguration);
+            Log.info(LOGGER, "[ UP ] Cors configuration has been set : {0}", config.encode());
+        }
         return new CorsFilter(source);
     }
 }
