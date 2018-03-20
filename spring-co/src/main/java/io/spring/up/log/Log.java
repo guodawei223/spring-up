@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import java.text.MessageFormat;
 import java.util.function.Consumer;
 
+@SuppressWarnings("all")
 public class Log {
 
     public static void jvm(final Logger logger, final Throwable ex) {
