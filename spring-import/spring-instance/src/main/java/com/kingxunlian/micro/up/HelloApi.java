@@ -5,15 +5,16 @@ import io.spring.up.core.data.JsonObject;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api")
 public class HelloApi {
 
     @PostMapping("/hello")
-    public String sayHello(@JsonBody("api.hello.post") final JsonObject data) {
+    public Mono<String> sayHello(@JsonBody("api.hello.post") final JsonObject data) {
         // System.out.println(Thread.currentThread().getId());
-        return data.encode();
+        return Mono.just("Hello");
     }
 
     @PostMapping("/hello1")
