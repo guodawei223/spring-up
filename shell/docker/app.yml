@@ -1,0 +1,53 @@
+version: '2'
+services:
+    imaauth-app:
+        image: imaauth
+        environment:
+            # - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_CLOUD_CONSUL_HOST=consul
+            - SPRING_CLOUD_CONSUL_PORT=8500
+            - SPRING_DATASOURCE_URL=jdbc:mysql://imaauth-mysql:3306/imaauth?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=imaauth-elasticsearch:9300
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=zookeeper
+            - JAVA_OPTS=-Djgroups.tcp.address=NON_LOOPBACK -Djava.net.preferIPv4Stack=true
+    imaauth-mysql:
+        extends:
+            file: mysql.yml
+            service: imaauth-mysql
+    imaauth-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: imaauth-elasticsearch
+    kafka:
+        extends:
+            file: kafka.yml
+            service: kafka
+        environment:
+            - KAFKA_ADVERTISED_HOST_NAME=kafka
+    zookeeper:
+        extends:
+            file: kafka.yml
+            service: zookeeper
+    consul:
+        image: consul:1.0.2
+        command: consul agent -dev -ui -client 0.0.0.0
+        ports:
+            - 8300:8300
+            - 8500:8500
+            - 8600:8600
+
+    consul-config-loader:
+        image: jhipster/consul-store-loader:v0.2.2
+        volumes:
+            - ./central-server-store:/store
+        environment:
+            - INIT_SLEEP_SECONDS=5
+            - CONSUL_URL=consul
+            - CONSUL_PORT=8500
+        # Uncomment to load configuration into Consul from a Git repository
+        # as configured in central-server-store/git2consul.json
+        # Also set SPRING_CLOUD_CONSUL_CONFIG_FORMAT=files on your apps
+        #    - CONFIG_MODE=git

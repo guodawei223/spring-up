@@ -1,6 +1,6 @@
 package io.spring.up.log;
 
-import io.spring.up.config.Node;
+import io.spring.up.store.Node;
 import io.spring.up.core.data.JsonObject;
 import io.spring.up.exception.internal.ErrorMissingException;
 import io.spring.up.tool.Ut;

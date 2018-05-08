@@ -1,0 +1,18 @@
+version: '2'
+services:
+    consul:
+        image: consul:1.0.2
+        ports:
+            - 8300:8300
+            - 8500:8500
+            - 8600:8600
+        command: consul agent -dev -ui -client 0.0.0.0
+
+    consul-config-loader:
+        image: jhipster/consul-store-loader:v0.2.2
+        volumes:
+            - ./central-server-store:/store
+        environment:
+            - INIT_SLEEP_SECONDS=5
+            - CONSUL_URL=consul
+            - CONSUL_PORT=8500
