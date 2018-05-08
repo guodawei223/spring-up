@@ -1,6 +1,6 @@
-package io.spring.up.config;
+package io.spring.up.boot.model;
 
-public interface Profiles {
+public interface UpProfiles {
     // 开发专用Profile
     String SPRING_DEVELOPMENT = "dev";
     // 测试专用Profile

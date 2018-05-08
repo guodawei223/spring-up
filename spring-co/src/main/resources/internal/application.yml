@@ -1,3 +1,10 @@
 spring:
   profiles:
     active: error,eureka
+
+up:
+  cors:
+    origin: "*"
+    header: "*"
+    method: "*"
+    path: "/**"
