@@ -69,7 +69,7 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter {
 
     @PostConstruct
     public void init() {
-        this.log.debug("Registering JVM gauges");
+        this.log.debug("[ UP Matrix ] Registering JVM gauges");
         this.metricRegistry.register(PROP_METRIC_REG_JVM_MEMORY, new MemoryUsageGaugeSet());
         this.metricRegistry.register(PROP_METRIC_REG_JVM_GARBAGE, new GarbageCollectorMetricSet());
         this.metricRegistry.register(PROP_METRIC_REG_JVM_THREADS, new ThreadStatesGaugeSet());
@@ -78,18 +78,18 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter {
         this.metricRegistry.register(PROP_METRIC_REG_JVM_ATTRIBUTE_SET, new JvmAttributeGaugeSet());
         this.metricRegistry.register(PROP_METRIC_REG_JCACHE_STATISTICS, new JCacheGaugeSet());
         if (this.hikariDataSource != null) {
-            this.log.debug("Monitoring the datasource");
+            this.log.debug("[ UP Matrix ] Monitoring the datasource");
             // remove the factory created by HikariDataSourceMetricsPostProcessor until JHipster migrate to Micrometer
             this.hikariDataSource.setMetricsTrackerFactory(null);
             this.hikariDataSource.setMetricRegistry(this.metricRegistry);
         }
         if (this.jHipsterProperties.getMetrics().getJmx().isEnabled()) {
-            this.log.debug("Initializing Metrics JMX reporting");
+            this.log.debug("[ UP Matrix ] Initializing Metrics JMX reporting");
             final JmxReporter jmxReporter = JmxReporter.forRegistry(this.metricRegistry).build();
             jmxReporter.start();
         }
         if (this.jHipsterProperties.getMetrics().getLogs().isEnabled()) {
-            this.log.info("Initializing Metrics Log reporting");
+            this.log.info("[ UP Matrix ] Initializing Metrics Log reporting");
             final Marker metricsMarker = MarkerFactory.getMarker("metrics");
             final Slf4jReporter reporter = Slf4jReporter.forRegistry(this.metricRegistry)
                     .outputTo(LoggerFactory.getLogger("metrics"))

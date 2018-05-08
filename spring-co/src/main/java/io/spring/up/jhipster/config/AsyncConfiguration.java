@@ -31,12 +31,12 @@ public class AsyncConfiguration implements AsyncConfigurer {
     @Override
     @Bean(name = "taskExecutor")
     public Executor getAsyncExecutor() {
-        this.log.debug("Creating Async Task Executor");
+        this.log.debug("[ UP Async ] Creating Async Task Executor");
         final ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(this.jHipsterProperties.getAsync().getCorePoolSize());
         executor.setMaxPoolSize(this.jHipsterProperties.getAsync().getMaxPoolSize());
         executor.setQueueCapacity(this.jHipsterProperties.getAsync().getQueueCapacity());
-        executor.setThreadNamePrefix("ima-auth-Executor-");
+        executor.setThreadNamePrefix("Spring-Up-Executor-");
         return new ExceptionHandlingAsyncTaskExecutor(executor);
     }
 

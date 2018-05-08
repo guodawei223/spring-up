@@ -50,11 +50,11 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
     @Override
     public void onStartup(final ServletContext servletContext) throws ServletException {
         if (this.env.getActiveProfiles().length != 0) {
-            this.log.info("Web application configuration, using profiles: {}", (Object[]) this.env.getActiveProfiles());
+            this.log.info("[ UP Web ] Web application configuration, using profiles: {}", (Object[]) this.env.getActiveProfiles());
         }
         final EnumSet<DispatcherType> disps = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.ASYNC);
         this.initMetrics(servletContext, disps);
-        this.log.info("Web application fully configured");
+        this.log.info("[ UP Web ] Web application fully configured");
     }
 
     /**
@@ -95,20 +95,20 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
      * Initializes Metrics.
      */
     private void initMetrics(final ServletContext servletContext, final EnumSet<DispatcherType> disps) {
-        this.log.debug("Initializing Metrics registries");
+        this.log.debug("[ UP Web Metric ] Initializing Metrics registries");
         servletContext.setAttribute(InstrumentedFilter.REGISTRY_ATTRIBUTE,
                 this.metricRegistry);
         servletContext.setAttribute(MetricsServlet.METRICS_REGISTRY,
                 this.metricRegistry);
 
-        this.log.debug("Registering Metrics Filter");
+        this.log.debug("[ UP Web Metric ] Registering Metrics Filter");
         final FilterRegistration.Dynamic metricsFilter = servletContext.addFilter("webappMetricsFilter",
                 new InstrumentedFilter());
 
         metricsFilter.addMappingForUrlPatterns(disps, true, "/*");
         metricsFilter.setAsyncSupported(true);
 
-        this.log.debug("Registering Metrics Servlet");
+        this.log.debug("[ UP Web Metric ] Registering Metrics Servlet");
         final ServletRegistration.Dynamic metricsAdminServlet =
                 servletContext.addServlet("metricsServlet", new MetricsServlet());
 
@@ -122,7 +122,7 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = this.jHipsterProperties.getCors();
         if (config.getAllowedOrigins() != null && !config.getAllowedOrigins().isEmpty()) {
-            this.log.debug("Registering CORS filter");
+            this.log.debug("[ UP Web Cors ] Registering CORS filter");
             source.registerCorsConfiguration("/api/**", config);
             source.registerCorsConfiguration("/management/**", config);
             source.registerCorsConfiguration("/v2/api-docs", config);

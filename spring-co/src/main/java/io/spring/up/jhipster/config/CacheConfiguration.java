@@ -97,9 +97,9 @@ public class CacheConfiguration {
      */
     @Bean
     public InfinispanGlobalConfigurer globalConfiguration(final JHipsterProperties jHipsterProperties) {
-        this.log.info("Defining Infinispan Global Configuration");
+        this.log.info("[ UP Cache ] Defining Infinispan Global Configuration");
         if (this.registration == null) { // if registry is not defined, use native discovery
-            this.log.warn("No discovery service is set up, Infinispan will use default discovery for cluster formation");
+            this.log.warn("[ UP Cache ] No discovery service is set up, Infinispan will use default discovery for cluster formation");
             return () -> GlobalConfigurationBuilder
                     .defaultClusteredBuilder().transport().defaultTransport()
                     .addProperty("configurationFile", jHipsterProperties.getCache().getInfinispan().getConfigFile())
@@ -149,7 +149,7 @@ public class CacheConfiguration {
      */
     @Bean
     public InfinispanCacheConfigurer cacheConfigurer(final JHipsterProperties jHipsterProperties) {
-        this.log.info("Defining {} configuration", "app-data for local, replicated and distributed modes");
+        this.log.info("[ UP Cache ] Defining {} configuration", "app-data for local, replicated and distributed modes");
         final JHipsterProperties.Cache.Infinispan cacheInfo = jHipsterProperties.getCache().getInfinispan();
 
         return manager -> {
@@ -234,7 +234,7 @@ public class CacheConfiguration {
         try {
             for (final ServiceInstance instance : this.discoveryClient.getInstances(this.registration.getServiceId())) {
                 final String clusterMember = instance.getHost() + ":7800";
-                this.log.debug("Adding Infinispan cluster member " + clusterMember);
+                this.log.debug("[ UP Cache ] Adding Infinispan cluster member " + clusterMember);
                 initialHosts.add(new IpAddress(clusterMember));
             }
             final TCP tcp = new TCP();
@@ -287,7 +287,7 @@ public class CacheConfiguration {
             channel.setProtocolStack(stack);
             stack.init();
         } catch (final Exception e) {
-            throw new BeanInitializationException("Cache (Infinispan protocol stack) configuration failed", e);
+            throw new BeanInitializationException("[ UP Cache ] Cache (Infinispan protocol stack) configuration failed", e);
         }
         return channel;
     }

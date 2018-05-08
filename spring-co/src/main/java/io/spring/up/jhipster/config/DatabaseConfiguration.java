@@ -48,7 +48,7 @@ public class DatabaseConfiguration {
             liquibase.setShouldRun(false);
         } else {
             liquibase.setShouldRun(liquibaseProperties.isEnabled());
-            this.log.debug("Configuring Liquibase");
+            this.log.debug("[ UP Cache ] Configuring Liquibase");
         }
         return liquibase;
     }

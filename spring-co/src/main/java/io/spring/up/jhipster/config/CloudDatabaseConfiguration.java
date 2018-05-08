@@ -18,7 +18,7 @@ public class CloudDatabaseConfiguration extends AbstractCloudConfig {
 
     @Bean
     public DataSource dataSource() {
-        this.log.info("Configuring JDBC datasource from a cloud provider");
+        this.log.info("[ UP Cache ] Configuring JDBC datasource from a cloud provider");
         return this.connectionFactory().dataSource();
     }
 }
