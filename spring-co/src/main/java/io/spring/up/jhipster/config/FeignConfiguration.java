@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableFeignClients(basePackages = "com.mbcloud.auth")
+@EnableFeignClients(basePackages = "com")
 public class FeignConfiguration {
 
     /**
