@@ -13,7 +13,7 @@
         <module>spring-ifx</module>
     </modules>
     <packaging>pom</packaging>
-    <name>( Spring Up ) Up Framework </name>
+    <name>( Spring Up ) Up Framework</name>
     <!-- License -->
     <licenses>
         <license>
@@ -58,39 +58,31 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.10.RELEASE</version>
+        <version>2.0.0.RELEASE</version>
     </parent>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <logback.version>1.2.3</logback.version>
-        <eureka.version>1.7.1</eureka.version>
-        <guava.version>18.0</guava.version>
-        <slf4j.version>1.7.25</slf4j.version>
-        <jackson.version>2.9.4</jackson.version>
-        <spring.version>4.3.14.RELEASE</spring.version>
-        <hystrix.version>1.5.12</hystrix.version>
-        <netflix.infix.version>0.3.0</netflix.infix.version>
-        <ribbon.version>2.2.4</ribbon.version>
-        <jersey.client4.version>1.19.4</jersey.client4.version>
-        <commons.configuration.version>1.10</commons.configuration.version>
-        <string.template.version>4.0.2</string.template.version>
-        <tomcat.embed.websocket.version>9.0.5</tomcat.embed.websocket.version>
-        <spring.boot.version>1.5.10.RELEASE</spring.boot.version>
-        <spring.cloud.version>1.3.2.RELEASE</spring.cloud.version>
-        <spring.cloud.config.version>1.4.2.RELEASE</spring.cloud.config.version>
-        <spring.cloud.netflix.version>1.4.3.RELEASE</spring.cloud.netflix.version>
-        <!-- Dependency -->
-        <jsr305.version>3.0.2</jsr305.version>
-        <hutool.version>4.0.6</hutool.version>
-        <reflect.asm.version>1.11.3</reflect.asm.version>
+        <!-- test, log -->
         <junit.version>4.12</junit.version>
+        <logback.version>1.2.3</logback.version>
+        <!-- tool -->
+        <hutool.version>4.0.7</hutool.version>
+        <reflect.asm.version>1.11.3</reflect.asm.version>
         <asm.version>6.0</asm.version>
         <rxjava2.version>2.1.10</rxjava2.version>
+        <servlet.version>4.0.0</servlet.version>
+        <!-- spring -->
+        <spring.version>5.0.4.RELEASE</spring.version>
+
+        <spring.boot.version>2.0.0.RELEASE</spring.boot.version>
+        <spring.cloud.version>2.0.0.M8</spring.cloud.version>
+        <spring.cloud.eureka.version>2.0.0.M2</spring.cloud.eureka.version>
+        <!-- Dependency -->
         <common.io.version>2.6</common.io.version>
+
         <!-- Plugin -->
         <maven.plugin.version>2.5</maven.plugin.version>
-        <!-- Plugin -->
         <maven.plugin.assembly>3.1.0</maven.plugin.assembly>
         <maven.plugin.compiler>3.7.0</maven.plugin.compiler>
         <maven.plugin.surefire>2.20.1</maven.plugin.surefire>
@@ -118,36 +110,44 @@
         <maven.plugin.aspectj>1.10</maven.plugin.aspectj>
         <maven.plugin.jcabi>0.14.1</maven.plugin.jcabi>
     </properties>
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>cn.spring-up</groupId>
                 <artifactId>spring-co</artifactId>
-                <version>${project.version}</version>
+                <version>${parent.version}</version>
             </dependency>
+            <!-- Cloud -->
             <dependency>
-                <groupId>cn.spring-up</groupId>
-                <artifactId>spring-ifx</artifactId>
-                <version>${project.version}</version>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.M8</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+            <!-- Boot -->
             <dependency>
-                <groupId>cn.spring-up</groupId>
-                <artifactId>spring-sms</artifactId>
-                <version>${project.version}</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.version}</version>
             </dependency>
-            <!-- Tool -->
+            <!-- Third Part -->
+            <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>${common.io.version}</version>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava -->
             <dependency>
                 <groupId>io.reactivex.rxjava2</groupId>
                 <artifactId>rxjava</artifactId>
@@ -170,44 +170,6 @@
                 <artifactId>asm</artifactId>
                 <version>${asm.version}</version>
             </dependency>
-
-            <!-- https://mvnrepository.com/artifact/junit/junit -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-            </dependency>
-            <!-- http://mvnrepository.com/artifact/com.fasterxml.jackson.core -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.dataformat</groupId>
-                <artifactId>jackson-dataformat-yaml</artifactId>
-                <version>${jackson.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.yaml</groupId>
-                        <artifactId>snakeyaml</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
             <!-- http://mvnrepository.com/artifact/ch.qos.logback -->
             <dependency>
                 <groupId>ch.qos.logback</groupId>
@@ -219,629 +181,48 @@
                 <artifactId>logback-core</artifactId>
                 <version>${logback.version}</version>
             </dependency>
-            <!-- http://mvnrepository.com/artifact/com.google.code.findbugs/jsr305/ -->
+            <!-- https://mvnrepository.com/artifact/junit/junit -->
             <dependency>
-                <groupId>com.google.code.findbugs</groupId>
-                <artifactId>jsr305</artifactId>
-                <version>${jsr305.version}</version>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
             </dependency>
-            <!-- Exclusive -->
+            <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Edgware.SR2</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <!-- You actually can't use Eureka as a client unless you register so
-                    it has to be a webapp -->
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-                <version>${spring.boot.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-databind</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter-tomcat</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>org.antlr</groupId>
-                <artifactId>stringtemplate</artifactId>
-                <version>${string.template.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>antlr</groupId>
-                        <artifactId>antlr</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-commons</artifactId>
-                <version>${spring.cloud.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.apache.httpcomponents</groupId>
-                        <artifactId>httpclient</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework.security</groupId>
-                        <artifactId>spring-security-crypto</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.jersey.contribs</groupId>
-                <artifactId>jersey-apache-client4</artifactId>
-                <version>${jersey.client4.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.sun.jersey</groupId>
-                        <artifactId>jersey-client</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.httpcomponents</groupId>
-                        <artifactId>httpclient</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.eureka</groupId>
-                <artifactId>eureka-client</artifactId>
-                <version>${eureka.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.netflix.archaius</groupId>
-                        <artifactId>archaius-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.netflix.servo</groupId>
-                        <artifactId>servo-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.httpcomponents</groupId>
-                        <artifactId>httpclient</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.sun.jersey</groupId>
-                        <artifactId>jersey-client</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.sun.jersey</groupId>
-                        <artifactId>jersey-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.thoughtworks.xstream</groupId>
-                        <artifactId>xstream</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.sun.jersey.contribs</groupId>
-                        <artifactId>jersey-apache-client4</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>javax.ws.rs</groupId>
-                        <artifactId>jsr311-api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.netflix-commons</groupId>
-                <artifactId>netflix-infix</artifactId>
-                <version>${netflix.infix.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.ws.rs</groupId>
-                        <artifactId>jsr311-api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.eureka</groupId>
-                <artifactId>eureka-core</artifactId>
-                <version>${eureka.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.ws.rs</groupId>
-                        <artifactId>jsr311-api</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.thoughtworks.xstream</groupId>
-                        <artifactId>xstream</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.netflix.eureka</groupId>
-                        <artifactId>eureka-client</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.ribbon</groupId>
-                <artifactId>ribbon-eureka</artifactId>
-                <version>${ribbon.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.netflix.eureka</groupId>
-                        <artifactId>eureka-client</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.netflix.archaius</groupId>
-                        <artifactId>archaius-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.ribbon</groupId>
-                <artifactId>ribbon-httpclient</artifactId>
-                <version>${ribbon.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.netflix.ribbon</groupId>
-                        <artifactId>ribbon-loadbalancer</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.netflix.archaius</groupId>
-                        <artifactId>archaius-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.netflix.servo</groupId>
-                        <artifactId>servo-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.ribbon</groupId>
-                <artifactId>ribbon-loadbalancer</artifactId>
-                <version>${ribbon.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.netflix.netflix-commons</groupId>
-                        <artifactId>netflix-commons-util</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.netflix.servo</groupId>
-                        <artifactId>servo-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.netflix.ribbon</groupId>
-                        <artifactId>ribbon-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.ribbon</groupId>
-                <artifactId>ribbon-transport</artifactId>
-                <version>${ribbon.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.netflix.ribbon</groupId>
-                        <artifactId>ribbon-loadbalancer</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>io.reactivex</groupId>
-                        <artifactId>rxnetty</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.netflix.archaius</groupId>
-                        <artifactId>archaius-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.hystrix</groupId>
-                <artifactId>hystrix-core</artifactId>
-                <version>${hystrix.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.netflix.archaius</groupId>
-                        <artifactId>archaius-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.netflix.ribbon</groupId>
-                <artifactId>ribbon</artifactId>
-                <version>${ribbon.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.reactivex</groupId>
-                        <artifactId>rxjava</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>commons-configuration</groupId>
-                        <artifactId>commons-configuration</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>javax.inject</groupId>
-                        <artifactId>javax.inject</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.netflix.ribbon</groupId>
-                        <artifactId>ribbon-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-websocket</artifactId>
-                <version>${tomcat.embed.websocket.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.apache.tomcat.embed</groupId>
-                        <artifactId>tomcat-embed-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-ribbon</artifactId>
-                <version>${spring.cloud.netflix.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.cloud</groupId>
-                        <artifactId>spring-cloud-starter-archaius</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-netflix-eureka-client</artifactId>
-                <version>${spring.cloud.netflix.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.cloud</groupId>
-                        <artifactId>spring-cloud-netflix-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-                <version>${spring.cloud.netflix.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.netflix.ribbon</groupId>
-                        <artifactId>ribbon-loadbalancer</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework.cloud</groupId>
-                        <artifactId>spring-cloud-netflix-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.netflix.ribbon</groupId>
-                        <artifactId>ribbon-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>io.reactivex</groupId>
-                        <artifactId>rxjava</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-autoconfigure</artifactId>
-                <version>${spring.boot.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-configuration-processor</artifactId>
-                <version>${spring.boot.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot</artifactId>
-                <version>${spring.boot.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-context</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>commons-configuration</groupId>
-                <artifactId>commons-configuration</artifactId>
-                <version>${commons.configuration.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-lang</groupId>
-                        <artifactId>commons-lang</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aop</artifactId>
-                <version>${spring.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-beans</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>${spring.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-web</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-beans</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-aop</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-context</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-expression</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-beans</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-aop</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-netflix-core</artifactId>
-                <version>${spring.cloud.netflix.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-autoconfigure</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-                <version>${spring.cloud.netflix.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.cloud</groupId>
-                        <artifactId>spring-cloud-starter-netflix-archaius</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-config-client</artifactId>
-                <version>${spring.cloud.config.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-databind</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework.cloud</groupId>
-                        <artifactId>spring-cloud-context</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework.cloud</groupId>
-                        <artifactId>spring-cloud-commons</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-autoconfigure</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-web</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter</artifactId>
-                <version>${spring.cloud.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.module</groupId>
-                <artifactId>jackson-module-afterburner</artifactId>
-                <version>${jackson.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-databind</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.module</groupId>
-                <artifactId>jackson-module-parameter-names</artifactId>
-                <version>${jackson.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-databind</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jdk8</artifactId>
-                <version>${jackson.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-databind</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jsr310</artifactId>
-                <version>${jackson.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-databind</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-annotations</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-core</artifactId>
-                    </exclusion>
-                </exclusions>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${common.io.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-databind</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-annotations</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>
+                <!-- Exclude the Tomcat dependency -->
                 <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-databind</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-annotations</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework.cloud</groupId>
-                    <artifactId>spring-cloud-starter</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+            <version>${spring.cloud.eureka.version}</version>
         </dependency>
     </dependencies>
 
