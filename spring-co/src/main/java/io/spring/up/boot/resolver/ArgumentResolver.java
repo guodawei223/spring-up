@@ -1,8 +1,6 @@
 package io.spring.up.boot.resolver;
 
 import io.spring.up.annotations.JsonBody;
-import io.spring.up.core.data.JsonArray;
-import io.spring.up.core.data.JsonObject;
 import io.spring.up.core.rules.Ruler;
 import io.spring.up.cv.Encodings;
 import io.spring.up.cv.Strings;
@@ -12,6 +10,8 @@ import io.spring.up.exception.web._500ParameterTypeException;
 import io.spring.up.exception.web._500WebRequestIoException;
 import io.spring.up.tool.Ut;
 import io.spring.up.tool.fn.Fn;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
 import org.apache.commons.io.IOUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;

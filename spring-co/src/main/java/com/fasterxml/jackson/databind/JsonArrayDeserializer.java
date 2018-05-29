@@ -1,7 +1,7 @@
 package com.fasterxml.jackson.databind;
 
 import com.fasterxml.jackson.core.JsonParser;
-import io.spring.up.core.data.JsonArray;
+import io.vertx.core.json.JsonArray;
 
 import java.io.IOException;
 

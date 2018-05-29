@@ -1,8 +1,8 @@
 package io.spring.up.exception;
 
-import io.spring.up.core.data.JsonObject;
 import io.spring.up.cv.Strings;
 import io.spring.up.log.Errors;
+import io.vertx.core.json.JsonObject;
 import org.springframework.http.HttpStatus;
 
 import java.util.Objects;

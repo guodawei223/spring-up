@@ -1,6 +1,6 @@
 package io.spring.up.config;
 
-import io.spring.up.core.data.JsonObject;
+import io.vertx.core.json.JsonObject;
 
 /**
  *

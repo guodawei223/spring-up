@@ -1,10 +1,10 @@
 package io.spring.up.log;
 
 import io.spring.up.config.Node;
-import io.spring.up.core.data.JsonObject;
 import io.spring.up.exception.internal.ErrorMissingException;
 import io.spring.up.tool.Ut;
 import io.spring.up.tool.fn.Fn;
+import io.vertx.core.json.JsonObject;
 
 import java.text.MessageFormat;
 
@@ -18,7 +18,7 @@ public class Errors {
 
     public static String formatPlugin(final Class<?> clazz,
                                       final int code,
-                                      final Object... args){
+                                      final Object... args) {
         return normalize(clazz, code, Tpl.E_PLUGIN, args);
     }
 

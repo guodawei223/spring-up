@@ -1,7 +1,7 @@
 package io.spring.up.boot.converter;
 
-import io.spring.up.core.data.JsonObject;
 import io.spring.up.tool.fn.Fn;
+import io.vertx.core.json.JsonObject;
 
 public class DataResponser implements Responser {
 

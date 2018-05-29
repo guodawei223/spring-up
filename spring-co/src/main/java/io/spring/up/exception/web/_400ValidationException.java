@@ -1,7 +1,7 @@
 package io.spring.up.exception.web;
 
-import io.spring.up.core.data.JsonObject;
 import io.spring.up.exception.WebException;
+import io.vertx.core.json.JsonObject;
 
 public class _400ValidationException extends WebException {
 

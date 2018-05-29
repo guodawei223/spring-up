@@ -1,9 +1,9 @@
 package io.spring.up.boot;
 
 import io.spring.up.config.Node;
-import io.spring.up.core.data.JsonObject;
 import io.spring.up.log.Log;
 import io.spring.up.tool.Ut;
+import io.vertx.core.json.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;

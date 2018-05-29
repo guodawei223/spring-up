@@ -1,9 +1,9 @@
 package io.spring.up.core.rules;
 
-import io.spring.up.core.data.JsonObject;
 import io.spring.up.exception.WebException;
 import io.spring.up.exception.web._400ValidationException;
 import io.spring.up.tool.fn.Fn;
+import io.vertx.core.json.JsonObject;
 
 import java.util.function.Supplier;
 

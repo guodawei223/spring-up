@@ -1,6 +1,6 @@
 package io.spring.up.boot.converter;
 
-import io.spring.up.core.data.JsonObject;
+import io.vertx.core.json.JsonObject;
 
 /**
  * 响应专用数据处理

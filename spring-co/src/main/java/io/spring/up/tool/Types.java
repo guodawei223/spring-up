@@ -1,8 +1,8 @@
 package io.spring.up.tool;
 
-import io.spring.up.core.data.JsonArray;
-import io.spring.up.core.data.JsonObject;
 import io.spring.up.cv.Strings;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
 
 import java.math.BigDecimal;
 import java.util.concurrent.ConcurrentHashMap;

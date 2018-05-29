@@ -1,8 +1,0 @@
-username:
-- type: required
-  message: "对不起，用户名不可为空！"
-- type: length
-  config:
-    min: 1
-    max: 2
-  message: "对不起，用户名长度不合法！"

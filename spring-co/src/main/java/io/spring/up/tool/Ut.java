@@ -2,8 +2,8 @@ package io.spring.up.tool;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.spring.up.core.data.JsonArray;
-import io.spring.up.core.data.JsonObject;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
 
 import java.io.File;
 import java.io.InputStream;
@@ -306,6 +306,7 @@ public class Ut {
     public static ObjectMapper getJacksonMapper() {
         return Jackson.getMapper();
     }
+
     /**
      * 网络
      */

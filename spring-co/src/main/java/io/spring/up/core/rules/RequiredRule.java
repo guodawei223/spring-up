@@ -1,7 +1,7 @@
 package io.spring.up.core.rules;
 
-import io.spring.up.core.data.JsonObject;
 import io.spring.up.exception.WebException;
+import io.vertx.core.json.JsonObject;
 
 public class RequiredRule implements Rule {
     @Override

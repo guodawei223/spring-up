@@ -1,7 +1,7 @@
 package com.fasterxml.jackson.databind;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import io.spring.up.core.data.JsonObject;
+import io.vertx.core.json.JsonObject;
 
 import java.io.IOException;
 

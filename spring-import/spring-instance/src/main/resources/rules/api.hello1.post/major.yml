@@ -1,6 +1,0 @@
-username:
-- type: required
-  message: "对不起，用户名不可为空"
-address:
-- type: required
-  message: "对不起，请提供你的地址信息"
